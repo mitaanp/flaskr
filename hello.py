@@ -1,8 +1,21 @@
 from flask import Flask, render_template
+from flask_wtf import FlaskForm
+from wtforms import StringField, SubmitField
+from wtforms.validators import DataRequired
+import os
 
-#Creating a flask instance
-
+secret_key = os.urandom(24)
+#Creating a flask app instance
 app = Flask(__name__)
+app.config['SECRET_KEY'] = secret_key
+
+# Create a Form Class
+class NamerForm(FlaskForm):
+    name = StringField("What's your name", validators=[DataRequired()])
+    submit = SubmitField("Submit")
+
+
+# Create a route decorator
 @app.route('/')
 
 def index():
@@ -21,7 +34,7 @@ def user(name):
 
 # Create Custom Error Pages
 
-#Invalid URL - just adding more text and pushing to git to test 
+#Invalid URL - just adding more text and pushing to git to test
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template("404.html"), 404
@@ -30,5 +43,8 @@ def page_not_found(e):
 @app.errorhandler(500)
 def page_not_found(e):
     return render_template("500.html"), 500
+
+
+
 
 
