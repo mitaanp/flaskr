@@ -21,7 +21,7 @@ def user(name):
 
 # Create Custom Error Pages
 
-#Invalid URL
+#Invalid URL - just adding more text and pushing to git to test 
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template("404.html"), 404
