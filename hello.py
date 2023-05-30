@@ -9,7 +9,10 @@ from datetime import datetime
 secret_key = os.urandom(24)
 #Creating a flask app instance
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
+#OLD SQLITE DB
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
+#POSTGRES/MYSQL DB NEW.
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:gurukul10@localhost/our_users'
 #Secret Key
 app.config['SECRET_KEY'] = secret_key
 #Initialise the DataBase
